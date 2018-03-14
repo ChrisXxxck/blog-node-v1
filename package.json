@@ -1,27 +1,18 @@
 {
-  "name": "blog-node-v1",
-  "version": "1.0.0",
-  "description": "the initial version of blog back-end project based on node",
-  "main": "index.js",
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Chris19970130/blog-node-v1.git"
-  },
-  "keywords": [
-    "node",
-    "blog",
-    "vue"
-  ],
-  "author": "xu chenkun (chris)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Chris19970130/blog-node-v1/issues"
-  },
-  "homepage": "https://github.com/Chris19970130/blog-node-v1#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "serve-favicon": "~2.4.5"
   }
 }
