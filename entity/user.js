@@ -1,18 +1,18 @@
 var sequelize = require('../connect/mysql');
 var Sequelize = require('sequelize');
 
-var Category = sequelize.define('category',{
+var User = sequelize.define('user',{
     id:{
         type:Sequelize.INTEGER,
         primaryKey:true
     },
-    parent_id:{
-        type:Sequelize.INTEGER,
-    },
-    name:{
+    username:{
         type:Sequelize.STRING
     },
-    url:{
+    password:{
+        type:Sequelize.STRING
+    },
+    account:{
         type:Sequelize.STRING
     },
     create_time:{
@@ -24,9 +24,6 @@ var Category = sequelize.define('category',{
     del_flag:{
         type:Sequelize.INTEGER
     },
-    level:{
-        type:Sequelize.INTEGER
-    },
     sort:{
         type:Sequelize.INTEGER
     }
@@ -36,4 +33,4 @@ var Category = sequelize.define('category',{
     freezeTableName: true
 });
 
-module.exports = Category;
+module.exports = User;

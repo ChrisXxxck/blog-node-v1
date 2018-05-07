@@ -27,6 +27,9 @@ var Course = sequelize.define('course',{
     del_flag:{
         type:Sequelize.INTEGER
     },
+    sort:{
+        type:Sequelize.INTEGER
+    }
 }, {
     timestamps: false,
     freezeTableName: true

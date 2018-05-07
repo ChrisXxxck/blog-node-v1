@@ -15,7 +15,8 @@ var sequelize = new Sequelize('blog','root','xck123',{
         max: 5,
         min: 0,
         idle: 30000
-    }
+    },
+    timezone: '+08:00',
 })
 
 module.exports = sequelize;

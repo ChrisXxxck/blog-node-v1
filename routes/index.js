@@ -1,4 +1,5 @@
 var express = require('express');
+var Sequelize = require('sequelize')
 
 //entity object
 var Category = require('../entity/category');
@@ -6,6 +7,7 @@ var Course = require('../entity/Course');
 
 var router = express.Router();
 
+var Op = Sequelize.Op;
 
 
 // connection.connect();
@@ -21,8 +23,18 @@ router.get('/getCategoryList',function (req, res, next) {
     var categoryList = new Array();
     Category.findAll({
         where: {
-            del_flag: 0
-        }
+            [Op.and]: [
+                {
+                    del_flag: 0,
+                },
+                {
+                    level: {
+                        [Op.lte]: 2,
+                    }
+                }
+            ]
+        },
+        order:['sort']
     }).then(function (categories) {
         // console.log('query.' + JSON.stringify(categories));
         for (let i=0;i<categories.length;i++){
@@ -37,10 +49,12 @@ router.get('/getCategoryList',function (req, res, next) {
                     if(categories[j].parent_id === categories[i].id ){
                         var subItem = {
                             name:'',
-                            url:''
+                            url:'',
+                            id:''
                         };
                         subItem.name = categories[j].name;
                         subItem.url = categories[j].url;
+                        subItem.id = categories[j].id
                         console.log(subItem);
                         item.list.push(subItem);
                     }
@@ -61,7 +75,7 @@ router.get('/getCategoryList',function (req, res, next) {
 });
 
 //ajax get courses
-router.get('/getCourseList',function (req, res, err) {
+router.get('/getCourseList',function (req, res, next) {
     Course.findAll({
         attributes: ['title','description','img','url'],
         where: {
@@ -75,7 +89,13 @@ router.get('/getCourseList',function (req, res, err) {
         console.log('failed: '+err)
     })
 
-})
+});
 
+router.get('/getCategoriesByParentId',function (req, res, next) {
+    console.log(1)
+    console.log(JSON.stringify(req));
+    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
+    res.end(JSON.stringify('hello'));
+})
 
 module.exports = router;

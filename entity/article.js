@@ -1,18 +1,28 @@
 var sequelize = require('../connect/mysql');
 var Sequelize = require('sequelize');
 
-var Category = sequelize.define('category',{
+var Article = sequelize.define('article',{
     id:{
         type:Sequelize.INTEGER,
-        primaryKey:true
+        primaryKey:true,
+        autoIncrement : true,
     },
-    parent_id:{
+    type:{
         type:Sequelize.INTEGER,
     },
-    name:{
+    belong_to:{
+        type:Sequelize.INTEGER
+    },
+    title:{
         type:Sequelize.STRING
     },
-    url:{
+    abstract:{
+        type:Sequelize.STRING
+    },
+    content:{
+        type:Sequelize.BLOB
+    },
+    author:{
         type:Sequelize.STRING
     },
     create_time:{
@@ -24,9 +34,6 @@ var Category = sequelize.define('category',{
     del_flag:{
         type:Sequelize.INTEGER
     },
-    level:{
-        type:Sequelize.INTEGER
-    },
     sort:{
         type:Sequelize.INTEGER
     }
@@ -36,4 +43,4 @@ var Category = sequelize.define('category',{
     freezeTableName: true
 });
 
-module.exports = Category;
+module.exports = Article;
